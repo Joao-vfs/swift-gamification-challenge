@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swift Gamificação - Dashboard</title>
+    <meta name="description" content="Sistema de gamificação para colaboradores das lojas Swift" />
+    <meta name="theme-color" content="#007bff" />
+    <link rel="icon" href="assets/images/Swift Logo.svg" type="image/svg+xml" />
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <!-- Preload of critical resources -->
+    <link rel="preload" href="assets/js/core/BaseComponent.js" as="script" />
+    <link rel="preload" href="assets/js/core/StateManager.js" as="script" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Initial loading -->
+      <div id="app-loading" class="app-loading">
+        <div class="loading-spinner"></div>
+        <p>Carregando Swift Gamificação...</p>
+      </div>
+
+      <!-- Main container for routed content -->
+      <div id="content" class="app-content" style="display: none">
+        <!-- O conteúdo será renderizado aqui pelos componentes -->
+      </div>
+    </div>
+
+    <!-- Modal container (for dynamic modals) -->
+    <div id="modal-container"></div>
+
+    <!-- Toast container (for notifications) -->
+    <div id="toast-container"></div>
+
+    <!-- Application scripts in the correct order -->
+
+    <!-- 1. Base component system -->
+    <script src="assets/js/core/BaseComponent.js"></script>
+    <script src="assets/js/core/StateManager.js"></script>
+    <script src="assets/js/core/Router.js"></script>
+
+    <!-- 2. Refactored components -->
+    <script src="assets/js/components/HeaderComponent.js"></script>
+    <script src="assets/js/components/NavigationComponent.js"></script>
+    <script src="assets/js/components/HomeComponent.js"></script>
+    <script src="assets/js/components/LoginComponent.js"></script>
+    <script src="assets/js/components/RegisterComponent.js"></script>
+    <script src="assets/js/components/dashboard.js"></script>
+    <script src="assets/js/components/ranking.js"></script>
+    <script src="assets/js/components/GoalsComponent.js"></script>
+    <script src="assets/js/components/ProfileComponent.js"></script>
+    <script src="assets/js/components/AchievementsComponent.js"></script>
+
+    <!-- 3. Utilities (if any) -->
+    <script src="assets/js/utils/api.js"></script>
+
+    <!-- 4. Main application -->
+    <script src="assets/js/SwiftGamificationApp.js"></script>
+
+    <!-- Script inline for removing the loading -->
+    <script>
+      document.addEventListener('app:initialized', function () {
+        const loading = document.getElementById('app-loading');
+        const content = document.getElementById('content');
+
+        if (loading) loading.style.display = 'none';
+        if (content) content.style.display = 'block';
+      });
+    </script>
+
+    <!-- Service Worker for PWA (future) -->
+    <script>
+      if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        navigator.serviceWorker.register('/sw.js').catch(console.error);
+      }
+    </script>
+  </body>
+</html>

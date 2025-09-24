@@ -1,0 +1,24 @@
+{
+  "name": "swift-gamification-challenge",
+  "version": "1.0.0",
+  "description": "Sistema de gamificação para motivar colaboradores das lojas Swift",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src --port=3000 --open=/index.html",
+    "dev": "live-server src --port=3000 --open=/index.html --watch=src"
+  },
+  "keywords": [
+    "gamification",
+    "swift",
+    "retail"
+  ],
+  "author": "Equipe Swift Gamificação",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
