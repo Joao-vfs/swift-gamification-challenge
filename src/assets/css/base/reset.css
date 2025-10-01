@@ -1,0 +1,90 @@
+/* ===== RESET AND NORMALIZE ===== */
+
+/* Basic reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HTML settings */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Body styles */
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 0;
+}
+
+/* Links without default decoration */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Lists without markers */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Buttons with cursor pointer */
+button {
+  cursor: pointer;
+}
+
+/* Inputs and forms */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Remove default outline in focus */
+:focus {
+  outline: none;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Form elements */
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default appearance of inputs */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}

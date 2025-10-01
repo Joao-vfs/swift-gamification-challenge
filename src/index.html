@@ -1,72 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swift Gamificação - Dashboard</title>
+    <meta name="description" content="Sistema de gamificação para colaboradores das lojas Swift" />
+    <link rel="icon" href="assets/images/Swift 2.svg" type="image/svg+xml" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swift Gamificação - Dashboard</title>
-  <meta name="description" content="Sistema de gamificação para colaboradores das lojas Swift" />
-  <meta name="theme-color" content="#DC4405" />
-  <link rel="icon" href="assets/images/Swift 2.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
 
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <body>
+    <div id="app">
+      <div id="app-loading" class="app-loading">
+        <div class="loading-spinner"></div>
+        <p>Carregando Swift Gamificação...</p>
+      </div>
 
-  <link rel="preload" href="assets/js/core/BaseComponent.js" as="script" />
-</head>
+      <main id="content" class="app-content" style="display: none"></main>
 
-<body>
-  <div id="app">
-    <div id="app-loading" class="app-loading">
-      <div class="loading-spinner"></div>
-      <p>Carregando Swift Gamificação...</p>
-    </div>
-
-    <main id="content" class="app-content" style="display: none">
-    </main>
-
-    <footer class="footer">
+      <footer class="footer">
         <div class="footer-content">
           <img src="assets/images/Swift 2.svg" alt="Swift Logo" class="footer-logo" />
           <div>2025 - Swift - Todos os direitos reservados</div>
-      </div>
-    </footer>
-  </div>
+        </div>
+      </footer>
+    </div>
 
-  <div id="modal-container"></div>
-  <div id="toast-container"></div>
+    <div id="modal-container"></div>
+    <div id="toast-container"></div>
 
-  <script src="assets/js/core/StateManager.js"></script>
-  <script src="assets/js/core/BaseComponent.js"></script>
-  <script src="assets/js/core/Router.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
 
-  <script src="assets/js/utils/ValidationUtils.js"></script> 
-
-  <script src="assets/js/pages/HomeComponent.js"></script>
-  <script src="assets/js/pages/LoginComponent.js"></script>
-  <script src="assets/js/pages/RegisterComponent.js"></script>
-
-  <script src="assets/js/SwiftGamificationApp.js"></script>
-
-  <script>
-    document.addEventListener('app:initialized', function () {
-      const loading = document.getElementById('app-loading');
-      const content = document.getElementById('content');
-
-      if (loading) loading.style.display = 'none';
-      if (content) content.style.display = 'block';
-    });
-  </script>
-
-  <script>
-    if ('serviceWorker' in navigator && location.protocol === 'https:') {
-      navigator.serviceWorker.register('/sw.js').catch(console.error);
-    }
-  </script>
-</body>
-
+    <script>
+      if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        navigator.serviceWorker.register('/sw.js').catch(console.error);
+      }
+    </script>
+  </body>
 </html>

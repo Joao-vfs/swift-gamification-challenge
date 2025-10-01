@@ -1,0 +1,90 @@
+/* ===== FOOTER - LAYOUT ORIGINAL ===== */
+
+/* Main footer */
+.footer {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  text-align: center;
+  padding: var(--spacing-lg);
+  margin: auto;
+  width: 100%;
+}
+
+/* Container of the footer */
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo of the footer */
+.footer-logo {
+  height: auto;
+  transition: var(--transition);
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Text of the copyright */
+.footer-content div {
+  color: var(--text-light);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+}
+.footer .footer-content {
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer-logo {
+  width: 100px;
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: var(--spacing-md);
+  }
+
+  .footer-logo {
+    width: 80px;
+  }
+
+  .footer-content div {
+    font-size: calc(var(--font-size-sm) - 1px);
+  }
+}
+*/
+
+/* ===== EFFECTS AND ANIMATIONS ===== */
+
+/* Slight entry animation */
+.footer {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Hover effect on the logo */
+.footer-logo {
+  cursor: pointer;
+}
+
+/* Loading states */
+.footer.loading {
+  opacity: 0.7;
+}
+
+/* Print styles on print */
+@media print {
+  .footer {
+    background: white !important;
+    color: black !important;
+    border-top: 1px solid #000;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .footer-content div {
+    color: black !important;
+  }
+}

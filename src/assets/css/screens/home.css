@@ -1,0 +1,268 @@
+/* ===== HOME SCREEN ===== */
+
+/* Main container of the home */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--spacing-lg);
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Logo of the home */
+.home-logo {
+    margin-bottom: var(--spacing-lg);
+}
+
+.home-logo img {
+    width: auto;
+    height: auto;
+    max-width: 200px;
+}
+
+/* Container of the textual content */
+.home-text-content {
+    max-width: 467px;
+}
+
+/* Main title */
+.home-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: var(--font-weight-light);
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+/* Large subtitle */
+.home-subtitle {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: var(--font-weight-extrabold);
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+/* Featured part of the subtitle */
+.home-subtitle-strong {
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+}
+
+/* Description */
+.home-description {
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--spacing-md);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* CTA button */
+.home-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.625rem;
+    border-radius: 1.75rem;
+    width: 13.813rem;
+    height: 3.5rem;
+    margin-top: var(--spacing-lg);
+    border: none;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    display: inline-block;
+}
+
+.home-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.home-button:active {
+    transform: scale(0.98);
+}
+
+/* Container of the image (hidden on mobile) */
+.home-image-container {
+    display: none;
+}
+
+/* ===== DESKTOP LAYOUT (1024px+) ===== */
+@media (min-width: 1024px) {
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-items: start;
+        text-align: left;
+        height: 100vh;
+        padding: 0 0 0 5%;
+    }
+
+    .home-logo {
+        position: absolute;
+        top: var(--spacing-lg);
+        left: 5%;
+        margin-bottom: 0;
+    }
+
+    .home-text-content {
+        grid-column: 1 / 2;
+        padding-right: var(--spacing-xl);
+    }
+
+    .home-image-container {
+        display: block;
+        grid-column: 2 / 3;
+        width: 100%;
+        height: 100%;
+    }
+
+    .home-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* ===== TABLET (768px - 1023px) ===== */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .home-container {
+        padding: var(--spacing-xl) var(--spacing-lg);
+        min-height: 80vh;
+    }
+    
+    .home-title {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+    
+    .home-subtitle {
+        font-size: clamp(3rem, 8vw, 5rem);
+    }
+    
+    .home-text-content {
+        max-width: 600px;
+    }
+}
+
+/* ===== MOBILE (up to 767px) ===== */
+@media (max-width: 767px) {
+    .home-container {
+        padding: var(--spacing-md);
+        min-height: 90vh;
+    }
+    
+    .home-logo img {
+        max-width: 150px;
+    }
+    
+    .home-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    
+    .home-subtitle {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+    
+    .home-description {
+        font-size: 0.9rem;
+        margin-top: var(--spacing-sm);
+    }
+    
+    .home-button {
+        width: 12rem;
+        height: 3rem;
+        font-size: 1.1rem;
+        margin-top: var(--spacing-md);
+    }
+    
+    .home-text-content {
+        max-width: 350px;
+    }
+}
+
+/* ===== MOBILE SMALL (up to 480px) ===== */
+@media (max-width: 480px) {
+    .home-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .home-logo img {
+        max-width: 120px;
+    }
+    
+    .home-title {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+    }
+    
+    .home-subtitle {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+    }
+    
+    .home-description {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .home-button {
+        width: 11rem;
+        height: 2.8rem;
+        font-size: 1rem;
+    }
+    
+    .home-text-content {
+        max-width: 300px;
+    }
+}
+
+/* ===== ANIMATIONS AND EFFECTS ===== */
+
+/* Entrada suave */
+.home-container {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.home-text-content {
+    animation: slideInLeft 0.6s ease-out 0.2s both;
+}
+
+.home-logo {
+    animation: bounceIn 0.6s ease-out 0.4s both;
+}
+
+/* Hover effects sutis */
+.home-logo img {
+    transition: var(--transition);
+}
+
+.home-logo:hover img {
+    transform: scale(1.02);
+}
+
+/* Loading states */
+.home-container.loading {
+    opacity: 0.7;
+}
+
+.home-container.loading .home-button {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Background gradient slight */
+.home-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(220, 68, 5, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(255, 167, 38, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}

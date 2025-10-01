@@ -4,8 +4,9 @@
   "description": "Sistema de gamificação para motivar colaboradores das lojas Swift",
   "main": "src/index.html",
   "scripts": {
-    "start": "live-server src --port=3000 --open=/index.html",
-    "dev": "live-server src --port=3000 --open=/index.html --watch=src"
+    "start": "live-server src --port=8080 --open=/index.html",
+    "dev": "live-server src --port=8080 --open=/index.html",
+    "serve": "live-server src --port=8080 --quiet"
   },
   "keywords": [
     "gamification",
