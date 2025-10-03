@@ -405,29 +405,3 @@ Contribuições são sempre bem-vindas! Para contribuir:
 5. Abra um Pull Request
 
 ---
-
-## 📄 Licença
-
-Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 👥 Autores
-
-**Equipe Swift Gamificação**
-
----
-
-## 📞 Suporte
-
-Para dúvidas ou suporte, entre em contato:
-- 📧 Email: suporte@swift.com.br
-- 💬 Issues: [GitHub Issues](https://github.com/seu-usuario/swift-gamification-challenge/issues)
-
----
-
-<div align="center">
-  <p>Desenvolvido com ❤️ pela equipe Swift</p>
-  <p>© 2025 Swift - Todos os direitos reservados</p>
-</div>
-
