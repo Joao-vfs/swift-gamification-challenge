@@ -1,0 +1,103 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.nyc_output/
+
+# Cache directories
+.cache/
+.npm/
+.eslintcache
+.parcel-cache/
+
+# Temporary folders
+tmp/
+temp/
+
+# Local configuration files
+config/local.json
+src/config/local.js
+
+# Figma exports (se houver cache local)
+figma-cache/
+*.fig
+
+# Testing
+test-results/
+screenshots/
+
+# Documentation build
+docs/api/
+
+# Backup files
+*.bak
+*.backup
+
+# Package manager lock files (manter apenas um)
+package-lock.json
+# ou yarn.lock (escolher um)
+
+# Arquivos específicos do projeto Swift
+src/assets/data/sensitive/
+api-keys.txt
+database.json
+
+# Arquivos de deployment
+.vercel/
+.netlify/
+firebase-debug.log
+
+# Arquivos de build local
+*.tgz
+
+# Diretórios de cache de ferramentas
+.cache/
+.parcel-cache/
+.sass-cache/
+
+# Arquivos de configuração sensíveis
+secrets/
+private/

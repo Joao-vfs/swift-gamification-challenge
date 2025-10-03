@@ -1,1 +1,0 @@
-# swift-gamification-challenge

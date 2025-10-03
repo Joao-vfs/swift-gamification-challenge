@@ -1,0 +1,307 @@
+/* ===== CARDS ===== */
+
+/* Card base */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Card de feature (home) */
+.feature-card {
+  background: var(--bg-card);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  text-align: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-card h3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Card of statistics */
+.stat-card {
+  background: var(--bg-card);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card:hover::before {
+  transform: scaleX(1);
+}
+
+.stat-card h3 {
+  font-size: var(--font-size-4xl);
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1;
+}
+
+.stat-card p {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: var(--font-size-base);
+}
+
+/* Card of authentication */
+.auth-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-3xl);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  position: relative;
+}
+
+.auth-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: var(--border-radius);
+  z-index: -1;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+/* List items */
+.achievement-item,
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-md);
+  transition: var(--transition);
+  background: transparent;
+}
+
+.achievement-item:hover,
+.ranking-item:hover {
+  background: var(--bg-secondary);
+  transform: translateX(4px);
+}
+
+.achievement-item:last-child,
+.ranking-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Achievement icon */
+.achievement-icon {
+  font-size: var(--font-size-3xl);
+  width: 50px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Achievement item content */
+.achievement-item strong,
+.ranking-item .name {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+}
+
+.achievement-item p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin: var(--spacing-xs) 0 0 0;
+  line-height: 1.4;
+}
+
+/* Ranking item */
+.ranking-item {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ranking-item .position {
+  font-weight: 700;
+  color: var(--primary-color);
+  min-width: 40px;
+  flex-shrink: 0;
+  font-size: var(--font-size-lg);
+}
+
+.ranking-item .name {
+  flex: 1;
+  text-align: left;
+  margin: 0 var(--spacing-md);
+}
+
+.ranking-item .points {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  flex-shrink: 0;
+}
+
+/* Current user item */
+.ranking-item.current-user {
+  background: linear-gradient(135deg, rgba(220, 68, 5, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+  border: 2px solid var(--primary-color);
+  font-weight: 600;
+}
+
+.ranking-item.current-user .position {
+  color: var(--primary-color);
+}
+
+.ranking-item.current-user .name {
+  color: var(--primary-color);
+}
+
+.ranking-item.current-user .points {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Sections with cards */
+.achievements,
+.ranking {
+  background: var(--bg-card);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.achievements h2,
+.ranking h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* List of items */
+.achievement-list,
+.ranking-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.achievement-list::-webkit-scrollbar,
+.ranking-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.achievement-list::-webkit-scrollbar-track,
+.ranking-list::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 2px;
+}
+
+.achievement-list::-webkit-scrollbar-thumb,
+.ranking-list::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+/* Empty card */
+.card-empty {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  color: var(--text-secondary);
+}
+
+.card-empty .empty-icon {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+/* Card with loading */
+.card-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: loading-shimmer 1.5s infinite;
+}
+
+/* Badges in cards */
+.card-badge {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background: var(--primary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.card-badge--success {
+  background: var(--success-color);
+}
+.card-badge--warning {
+  background: var(--warning-color);
+}
+.card-badge--error {
+  background: var(--error-color);
+}
+.card-badge--info {
+  background: var(--info-color);
+}

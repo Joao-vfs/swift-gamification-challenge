@@ -1,0 +1,390 @@
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* ===== BREAKPOINTS ===== */
+/* 
+   - Mobile: até 479px
+   - Mobile Large: 480px - 767px  
+   - Tablet: 768px - 1023px
+   - Desktop: 1024px - 1199px
+   - Desktop Large: 1200px+
+*/
+
+/* ===== TABLET (768px - 1023px) ===== */
+@media (max-width: 1023px) and (min-width: 768px) {
+  /* General layout */
+  #content {
+    max-width: 100%;
+  }
+
+  /* Typography */
+  .home-title {
+    font-size: var(--font-size-4xl);
+  }
+
+  /* Buttons */
+  .btn-primary,
+  .btn-secondary,
+  .btn-auth {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Cards */
+  .feature-card,
+  .stat-card {
+    padding: var(--spacing-lg);
+  }
+
+  /* Forms */
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* ===== TABLET SPECIFIC (768px) ===== */
+@media (max-width: 768px) {
+  /* Home specific */
+  .home-title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .home-actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 350px;
+    margin: 0 auto var(--spacing-3xl);
+  }
+
+  .home-features {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  /* Auth specific */
+  .auth-card {
+    padding: var(--spacing-xl);
+    margin: var(--spacing-md);
+    max-width: 400px;
+  }
+
+  /* Dashboard specific */
+  .dashboard-header {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .dashboard-sections {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  /* Footer */
+  .footer-links {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+/* ===== MOBILE LARGE (480px - 767px) ===== */
+@media (max-width: 767px) and (min-width: 480px) {
+  /* Typography adjusted */
+  html {
+    font-size: 15px;
+  }
+
+  /* Reduced spacing */
+  .home-container,
+  .auth-container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  /* Smaller cards */
+  .feature-card {
+    padding: var(--spacing-lg);
+  }
+
+  .stat-card {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* ===== MOBILE (up to 479px) ===== */
+@media (max-width: 479px) {
+  /* Typography mobile */
+  html {
+    font-size: 16px;
+  }
+
+  /* Home mobile */
+  .home-title {
+    font-size: var(--font-size-3xl);
+    line-height: 1.2;
+  }
+
+  .home-subtitle {
+    font-size: var(--font-size-3xl);
+  }
+
+  .home-container {
+    padding: var(--spacing-md);
+    min-height: 60vh;
+  }
+
+  .home-logo {
+    width: 80px;
+  }
+
+  .home-actions {
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  /* Auth mobile */
+  .auth-card {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-sm);
+  }
+
+  .auth-title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .auth-logo {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .demo-credentials {
+    padding: var(--spacing-md);
+  }
+
+  .demo-credentials .btn-demo {
+    display: block;
+    width: 100%;
+    margin: var(--spacing-xs) 0;
+    font-size: calc(var(--font-size-sm) - 1px);
+  }
+
+  /* Dashboard mobile */
+  .dashboard-container {
+    padding: var(--spacing-sm);
+  }
+
+  .dashboard-header {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .header-left h1 {
+    font-size: var(--font-size-lg);
+  }
+
+  .dashboard-logo {
+    width: 40px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .achievements,
+  .ranking {
+    padding: var(--spacing-lg);
+  }
+
+  .achievement-item,
+  .ranking-item {
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .achievement-icon {
+    font-size: var(--font-size-xl);
+    width: 35px;
+  }
+
+  /* Buttons mobile */
+  .btn-primary,
+  .btn-secondary,
+  .btn-auth {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    min-height: 44px;
+  }
+
+  .btn-sm {
+    padding: var(--spacing-sm);
+    font-size: calc(var(--font-size-sm) - 1px);
+    min-height: 36px;
+  }
+
+  /* Forms mobile */
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .form-input {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+  }
+
+  /* Footer mobile */
+  .footer {
+    padding: var(--spacing-md);
+  }
+
+  .footer-content {
+    gap: var(--spacing-sm);
+  }
+
+  .footer-content div {
+    font-size: calc(var(--font-size-sm) - 1px);
+  }
+}
+
+/* ===== MOBILE VERY SMALL (up to 360px) ===== */
+@media (max-width: 360px) {
+  /* Typography extra small */
+  html {
+    font-size: 13px;
+  }
+
+  .home-container,
+  .auth-container {
+    padding: var(--spacing-sm);
+  }
+
+  /* Minimum cards */
+  .auth-card {
+    padding: var(--spacing-md);
+    margin: var(--spacing-xs);
+  }
+
+  .feature-card,
+  .stat-card,
+  .achievements,
+  .ranking {
+    padding: var(--spacing-md);
+  }
+
+  /* Small buttons */
+  .btn-primary,
+  .btn-secondary,
+  .btn-auth {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+/* ===== LANDSCAPE MOBILE ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .home-container {
+    min-height: 90vh;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .auth-container {
+    min-height: 90vh;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .home-features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== HOVER SUPPORT ===== */
+@media (hover: hover) {
+  /* Apply hover effects only on devices that support it */
+  .feature-card:hover,
+  .stat-card:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    /* Hover effects already defined in the specific files */
+  }
+}
+
+@media (hover: none) {
+  /* Remove hover effects on touch devices */
+  .feature-card,
+  .stat-card,
+  .btn-primary,
+  .btn-secondary {
+    transform: none !important;
+  }
+}
+
+/* ===== TOUCH DEVICE ADJUSTMENTS ===== */
+@media (pointer: coarse) {
+  /* Increase touch area */
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-auth,
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+  }
+
+  /* Larger spacing for touch */
+  .home-actions {
+    gap: var(--spacing-md);
+  }
+
+  .footer-links {
+    gap: var(--spacing-lg);
+  }
+}
+
+/* ===== HIGH DPI SCREENS ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  /* Adjustments for high density screens */
+  .loading-spinner {
+    border-width: 1px;
+  }
+
+  /* Thinner fonts on retina */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ===== PRINT RESPONSIVE ===== */
+@media print {
+  /* Hide interactive elements on print */
+  .btn-logout,
+  .demo-credentials,
+  .home-actions,
+  .footer-social {
+    display: none !important;
+  }
+
+  /* Adjust colors for print */
+  * {
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Page breaks */
+  .dashboard-sections {
+    page-break-inside: avoid;
+  }
+
+  .stats-grid {
+    page-break-after: avoid;
+  }
+}

@@ -1,0 +1,106 @@
+/* ===== SWIFT GAMIFICAÇÃO - CSS MODULES ===== */
+
+/* ===== BASE - FUNDAMENTALS ===== */
+@import url("./base/variables.css"); /* Custom CSS variables */
+@import url("./base/reset.css"); /* Reset e normalize */
+@import url("./base/layout.css"); /* Main layout and containers */
+@import url("./base/animations.css"); /* Animations and transitions */
+
+/* ===== COMPONENTS - REUSABLE ===== */
+@import url("./components/buttons.css"); /* All buttons */
+@import url("./components/forms.css"); /* Forms and inputs */
+@import url("./components/cards.css"); /* Cards */
+@import url("./components/loading.css"); /* Loading spinners */
+@import url("./components/toast.css"); /* Toasts */
+
+/* ===== SCREENS - TELAS ESPECÍFICAS ===== */
+@import url("./screens/home.css"); /* Home page */
+@import url("./screens/auth.css"); /* Login and register */
+@import url("./screens/dashboard.css"); /* User dashboard */
+@import url("./screens/footer.css"); /* Footer */
+
+/* ===== RESPONSIVE - ADAPTABILITY ===== */
+@import url("./responsive/responsive.css"); /* Media queries */
+@import url("./responsive/accessibility.css"); /* Accessibility */
+
+/* ===== UTILITIES - UTILITY CLASSES ===== */
+
+/* Display & Visibility */
+.hidden {
+  display: none !important;
+}
+.visible {
+  display: block !important;
+}
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
+
+/* Text alignment */
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
+/* Font weights */
+.font-normal {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+
+/* Colors */
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-success {
+  color: var(--success-color);
+}
+.text-error {
+  color: var(--error-color);
+}
+
+/* Spacing */
+.m-auto {
+  margin: auto;
+}
+.p-3 {
+  padding: var(--spacing-md);
+}
+.p-4 {
+  padding: var(--spacing-lg);
+}
+
+/* Borders */
+.rounded {
+  border-radius: var(--border-radius);
+}
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Cursors */
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-wait {
+  cursor: wait;
+}
