@@ -3,6 +3,10 @@ import { userManager } from '../utils/UserManager.js';
 import { CommonUtils } from '../utils/CommonUtils.js';
 import { FormUtils } from '../utils/FormUtils.js';
 
+/**
+ * RegisterScreen - User registration view
+ * Handles new user registration with validation
+ */
 export class RegisterScreen {
     constructor(router) {
         this.router = router;
@@ -24,7 +28,7 @@ export class RegisterScreen {
 
     /**
      * Render register screen
-     * @returns {string} HTML of the screen
+     * @returns {string} Register screen HTML
      */
     render() {
         return `
@@ -38,8 +42,8 @@ export class RegisterScreen {
     }
 
     /**
-     * Render register logo
-     * @returns {string} HTML of the logo
+     * Render logo section
+     * @returns {string} Logo HTML
      */
     renderLogo() {
         return `
@@ -48,8 +52,8 @@ export class RegisterScreen {
     }
 
     /**
-     * Render main card
-     * @returns {string} HTML of the card
+     * Render main card container
+     * @returns {string} Card HTML
      */
     renderCard() {
         return `
@@ -62,8 +66,8 @@ export class RegisterScreen {
     }
 
     /**
-     * Render register form
-     * @returns {string} HTML of the form
+     * Render registration form
+     * @returns {string} Form HTML
      */
     renderForm() {
         const { errors } = this.state;
@@ -78,12 +82,7 @@ export class RegisterScreen {
                 ${this.renderInputField('nome', 'Nome completo', 'text', 'Digite seu nome completo')}
                 ${this.renderInputField('cpf', 'CPF', 'text', 'Insira o seu CPF', 14)}
                 ${this.renderPasswordField('senha', 'Senha', 'Crie uma senha forte', 'showPassword')}
-                ${this.renderPasswordField(
-                    'confirmSenha',
-                    'Confirmar senha',
-                    'Digite a senha novamente',
-                    'showConfirmPassword'
-                )}
+                ${this.renderPasswordField('confirmSenha', 'Confirmar senha', 'Digite a senha novamente', 'showConfirmPassword')}
 
                 ${errors.general ? `<div class="form-error general-error">${errors.general}</div>` : ''}
 
@@ -97,13 +96,13 @@ export class RegisterScreen {
     }
 
     /**
-     * Render input field using FormUtils
-     * @param {string} name - Name of the field
-     * @param {string} label - Label of the field
-     * @param {string} type - Type of the input
-     * @param {string} placeholder - Placeholder
+     * Render text input field
+     * @param {string} name - Field name
+     * @param {string} label - Field label
+     * @param {string} type - Input type
+     * @param {string} placeholder - Placeholder text
      * @param {number} maxlength - Maximum length
-     * @returns {string} HTML of the field
+     * @returns {string} Input field HTML
      */
     renderInputField(name, label, type, placeholder, maxlength = '') {
         const value = this.state.formData[name] || '';
@@ -120,12 +119,12 @@ export class RegisterScreen {
     }
 
     /**
-     * Render password field using FormUtils
-     * @param {string} name - Name of the field
-     * @param {string} label - Label of the field
-     * @param {string} placeholder - Placeholder
-     * @param {string} showPasswordKey - Key of the state to show password
-     * @returns {string} HTML of the password field
+     * Render password field with toggle visibility
+     * @param {string} name - Field name
+     * @param {string} label - Field label
+     * @param {string} placeholder - Placeholder text
+     * @param {string} showPasswordKey - State key for password visibility
+     * @returns {string} Password field HTML
      */
     renderPasswordField(name, label, placeholder, showPasswordKey) {
         const value = this.state.formData[name] || '';
@@ -141,8 +140,8 @@ export class RegisterScreen {
     }
 
     /**
-     * Render link to login using FormUtils
-     * @returns {string} HTML of the link
+     * Render navigation link to login page
+     * @returns {string} Nav link HTML
      */
     renderLinkLogin() {
         return FormUtils.createNavLink({
@@ -154,14 +153,14 @@ export class RegisterScreen {
     }
 
     /**
-     * Update field in state using CommonUtils for formatting
-     * @param {HTMLInputElement} element - The input element that was changed
+     * Update form field value in state
+     * @param {HTMLInputElement} element - Input element that changed
      */
     updateField(element) {
         const { name, value } = element;
         let processedValue = value;
 
-        // Format CPF using CommonUtils
+        // Apply CPF formatting
         if (name === 'cpf') {
             processedValue = CommonUtils.formatCPF(value);
         }
@@ -171,62 +170,76 @@ export class RegisterScreen {
     }
 
     /**
-     * Toggle password visibility (handled by FormUtils)
-     * @param {string} showPasswordKey - Key of the state to control visibility
-     */
-    togglePasswordVisibility(showPasswordKey) {
-        this.state[showPasswordKey] = !this.state[showPasswordKey];
-        // FormUtils handles the actual DOM updates
-    }
-
-    /**
-     * Validate form data
-     * @param {FormData} formData - Data of the form
-     * @returns {boolean} If the data is valid
+     * Validate registration form data
+     * @param {FormData} formData - Form data to validate
+     * @returns {boolean} True if form is valid
      */
     validateForm(formData) {
         const errors = {};
 
-        const codigoLoja = formData.get('codigoLoja');
-        const codigoFuncionario = formData.get('codigoFuncionario');
-        const nome = formData.get('nome');
-        const cpf = formData.get('cpf');
+        const codigoLoja = formData.get('codigoLoja')?.trim();
+        const codigoFuncionario = formData.get('codigoFuncionario')?.trim();
+        const nome = formData.get('nome')?.trim();
+        const cpf = formData.get('cpf')?.trim();
         const senha = formData.get('senha');
         const confirmSenha = formData.get('confirmSenha');
 
-        if (!codigoLoja) errors.codigoLoja = 'Código da loja é obrigatório';
-        if (!codigoFuncionario) errors.codigoFuncionario = 'Código de funcionário é obrigatório';
-        if (!nome) errors.nome = 'Nome completo é obrigatório';
-        if (!cpf) errors.cpf = 'CPF é obrigatório';
-        if (!senha) errors.senha = 'Senha é obrigatória';
-        if (!confirmSenha) errors.confirmSenha = 'Confirmação de senha é obrigatória';
-
-        if (nome && nome.length < 2) {
+        // Required field validation
+        if (!codigoLoja) {
+            errors.codigoLoja = 'Código da loja é obrigatório';
+        }
+        
+        if (!codigoFuncionario) {
+            errors.codigoFuncionario = 'Código de funcionário é obrigatório';
+        }
+        
+        if (!nome) {
+            errors.nome = 'Nome completo é obrigatório';
+        } else if (nome.length < 2) {
             errors.nome = 'Nome deve ter pelo menos 2 caracteres';
         }
 
-        if (cpf && cpf.replace(/\D/g, '').length !== 11) {
+        // CPF validation
+        if (!cpf) {
+            errors.cpf = 'CPF é obrigatório';
+        } else if (cpf.replace(/\D/g, '').length !== 11) {
             errors.cpf = 'CPF deve ter 11 dígitos';
         }
 
-        if (senha && senha.length < 6) {
+        // Password validation
+        if (!senha) {
+            errors.senha = 'Senha é obrigatória';
+        } else if (senha.length < 6) {
             errors.senha = 'Senha deve ter pelo menos 6 caracteres';
         }
 
-        if (senha && confirmSenha && senha !== confirmSenha) {
+        // Password confirmation validation
+        if (!confirmSenha) {
+            errors.confirmSenha = 'Confirmação de senha é obrigatória';
+        } else if (senha && confirmSenha && senha !== confirmSenha) {
             errors.confirmSenha = 'As senhas não coincidem';
         }
 
         this.state.errors = errors;
+        
+        // Show first error in toast for immediate feedback
+        if (Object.keys(errors).length > 0) {
+            const firstError = Object.values(errors)[0];
+            Toast.warning(firstError);
+        }
+        
         return Object.keys(errors).length === 0;
     }
 
     /**
-     * Process register
-     * @param {FormData} formData - Data of the form
+     * Process registration form submission
+     * @param {FormData} formData - Form data
      */
     async processRegister(formData) {
         if (this.state.isLoading) return;
+
+        // Clear previous errors
+        this.state.errors = {};
 
         if (!this.validateForm(formData)) {
             this.renderErrors();
@@ -234,31 +247,33 @@ export class RegisterScreen {
         }
 
         this.state.isLoading = true;
-        this.state.errors = {};
         this.updateSubmitButton();
 
         try {
+            // Simulate network delay
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             const userData = {
-                codigoLoja: formData.get('codigoLoja'),
-                codigoFuncionario: formData.get('codigoFuncionario'),
-                nome: formData.get('nome'),
-                cpf: formData.get('cpf'),
+                codigoLoja: formData.get('codigoLoja')?.trim(),
+                codigoFuncionario: formData.get('codigoFuncionario')?.trim(),
+                nome: formData.get('nome')?.trim(),
+                cpf: formData.get('cpf')?.trim(),
                 senha: formData.get('senha')
             };
 
             const newUser = userManager.registerUser(userData);
 
-            Toast.success(`Cadastro realizado com sucesso! Bem-vindo, ${newUser.name}! Faça login para continuar.`);
+            Toast.success(`✅ Cadastro realizado com sucesso! Bem-vindo, ${newUser.name}! Redirecionando para o login...`);
 
+            // Navigate to login after success
             setTimeout(() => {
                 this.router.navigate('login');
             }, 2000);
         } catch (error) {
+            Toast.error('Erro ao cadastrar usuário');
             this.state.errors.general = error.message;
             this.renderErrors();
-            Toast.error(error.message);
+            Toast.error(`❌ ${error.message}`);
         } finally {
             this.state.isLoading = false;
             this.updateSubmitButton();
@@ -266,7 +281,7 @@ export class RegisterScreen {
     }
 
     /**
-     * Render errors in the form
+     * Render validation errors in the form
      */
     renderErrors() {
         Object.keys(this.state.errors).forEach(fieldName => {
@@ -285,17 +300,15 @@ export class RegisterScreen {
     }
 
     /**
-     * Update submit button using FormUtils
+     * Update submit button loading state
      */
     updateSubmitButton() {
         const button = document.querySelector('.btn-auth');
         FormUtils.updateButtonState(button, this.state.isLoading, 'Cadastrando...', 'Cadastrar');
     }
 
-    // Removed duplicate utility functions - now using CommonUtils
-
     /**
-     * Setup events of the screen
+     * Setup event listeners for the register screen
      */
     setupEvents() {
         const form = document.getElementById('registerForm');
@@ -307,14 +320,14 @@ export class RegisterScreen {
             });
         }
 
-        // Setup form inputs using FormUtils
+        // Setup form input handlers
         FormUtils.setupFormInputs(this, this.updateField);
 
-        // Setup password toggles using FormUtils
+        // Setup password visibility toggles
         FormUtils.setupPasswordToggle(this.state, 'senha', 'showPassword');
         FormUtils.setupPasswordToggle(this.state, 'confirmSenha', 'showConfirmPassword');
 
-        // Setup viewport listeners using CommonUtils
+        // Setup viewport listeners for responsive behavior
         CommonUtils.setupViewportListeners();
     }
 }

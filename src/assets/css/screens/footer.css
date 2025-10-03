@@ -34,7 +34,7 @@
   font-weight: var(--font-weight-normal);
 }
 .footer .footer-content {
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--spacing-sm);
 }
 
@@ -53,6 +53,10 @@
 
   .footer-content div {
     font-size: calc(var(--font-size-sm) - 1px);
+  }
+
+  .footer .footer-content {
+    flex-direction: column;
   }
 }
 */

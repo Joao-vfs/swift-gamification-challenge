@@ -1,3 +1,7 @@
+/**
+ * HomeScreen - Landing page view
+ * Entry point showing welcome message and call-to-action
+ */
 export class HomeScreen {
     constructor(router) {
         this.router = router;
@@ -5,7 +9,7 @@ export class HomeScreen {
 
     /**
      * Render home screen
-     * @returns {string} HTML of the screen
+     * @returns {string} Home screen HTML
      */
     render() {
         return `
@@ -18,8 +22,8 @@ export class HomeScreen {
     }
 
     /**
-     * Render home logo
-     * @returns {string} HTML of the logo
+     * Render logo section
+     * @returns {string} Logo HTML
      */
     renderLogo() {
         return `
@@ -30,8 +34,8 @@ export class HomeScreen {
     }
 
     /**
-     * Render textual content
-     * @returns {string} HTML of the content
+     * Render main content with title, description and CTA
+     * @returns {string} Content HTML
      */
     renderContent() {
         return `
@@ -51,12 +55,13 @@ export class HomeScreen {
     }
 
     /**
-     * Render CTA button
-     * @returns {string} HTML of the button
+     * Render call-to-action button
+     * @returns {string} Button HTML
      */
     renderButton() {
         const buttonId = 'home-cta-button';
 
+        // Setup button click handler asynchronously
         setTimeout(() => {
             const button = document.getElementById(buttonId);
             if (button) {
@@ -71,8 +76,8 @@ export class HomeScreen {
     }
 
     /**
-     * Render home image
-     * @returns {string} HTML of the image
+     * Render home image illustration
+     * @returns {string} Image HTML
      */
     renderImage() {
         return `
@@ -83,7 +88,10 @@ export class HomeScreen {
     }
 
     /**
-     * Setup events of the screen
+     * Setup event listeners for the home screen
+     * (No additional events needed - button handler is setup in render)
      */
-    setupEvents() {}
+    setupEvents() {
+        // No additional events to setup
+    }
 }

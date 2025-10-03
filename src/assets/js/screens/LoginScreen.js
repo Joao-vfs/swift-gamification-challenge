@@ -3,9 +3,14 @@ import { userManager } from '../utils/UserManager.js';
 import { CommonUtils } from '../utils/CommonUtils.js';
 import { FormUtils } from '../utils/FormUtils.js';
 
+/**
+ * LoginScreen - User authentication view
+ * Handles user login with validation and session management
+ */
 export class LoginScreen {
     constructor(router) {
         const defaultUser = userManager.getDefaultUserInfo();
+        this.REMEMBER_USER_KEY = 'swift_remember_user';
         this.router = router;
         this.state = {
             formData: {
@@ -22,7 +27,7 @@ export class LoginScreen {
 
     /**
      * Render login screen
-     * @returns {string} HTML of the screen
+     * @returns {string} Login screen HTML
      */
     render() {
         return `
@@ -36,8 +41,8 @@ export class LoginScreen {
     }
 
     /**
-     * Render login logo
-     * @returns {string} HTML of the logo
+     * Render logo section
+     * @returns {string} Logo HTML
      */
     renderLogo() {
         return `
@@ -46,8 +51,8 @@ export class LoginScreen {
     }
 
     /**
-     * Render main card
-     * @returns {string} HTML of the card
+     * Render main card container
+     * @returns {string} Card HTML
      */
     renderCard() {
         return `
@@ -61,7 +66,7 @@ export class LoginScreen {
 
     /**
      * Render login form
-     * @returns {string} HTML of the form
+     * @returns {string} Form HTML
      */
     renderForm() {
         return `
@@ -95,13 +100,13 @@ export class LoginScreen {
     }
 
     /**
-     * Render input field using FormUtils
-     * @param {string} name - Name of the field
-     * @param {string} label - Label of the field
-     * @param {string} type - Type of the input
-     * @param {string} placeholder - Placeholder
+     * Render text input field
+     * @param {string} name - Field name
+     * @param {string} label - Field label
+     * @param {string} type - Input type
+     * @param {string} placeholder - Placeholder text
      * @param {number} maxlength - Maximum length
-     * @returns {string} HTML of the field
+     * @returns {string} Input field HTML
      */
     renderInputField(name, label, type, placeholder, maxlength = '') {
         const value = this.state.formData[name] || '';
@@ -110,7 +115,7 @@ export class LoginScreen {
             label,
             type,
             placeholder,
-            value,
+            value: CommonUtils.maskCPF(value),
             maxlength,
             required: true,
             disabled: this.state.isLoading
@@ -118,11 +123,11 @@ export class LoginScreen {
     }
 
     /**
-     * Render password field using FormUtils
-     * @param {string} name - Name of the field
-     * @param {string} label - Label of the field
-     * @param {string} placeholder - Placeholder
-     * @returns {string} HTML of the field
+     * Render password field with toggle visibility
+     * @param {string} name - Field name
+     * @param {string} label - Field label
+     * @param {string} placeholder - Placeholder text
+     * @returns {string} Password field HTML
      */
     renderPasswordField(name, label, placeholder) {
         const value = this.state.formData[name] || '';
@@ -138,8 +143,8 @@ export class LoginScreen {
     }
 
     /**
-     * Render link to register using FormUtils
-     * @returns {string} HTML of the link
+     * Render navigation link to register page
+     * @returns {string} Nav link HTML
      */
     renderLinkRegister() {
         return FormUtils.createNavLink({
@@ -151,14 +156,14 @@ export class LoginScreen {
     }
 
     /**
-     * Update field in state and on the screen
-     * @param {HTMLInputElement} element - The input element that was changed
+     * Update form field value in state
+     * @param {HTMLInputElement} element - Input element that changed
      */
     updateField(element) {
         const { name, value } = element;
         let processedValue = value;
 
-        // Format CPF using CommonUtils
+        // Apply CPF formatting
         if (name === 'cpf') {
             processedValue = CommonUtils.formatCPF(value);
         }
@@ -168,16 +173,8 @@ export class LoginScreen {
     }
 
     /**
-     * Toggle password visibility (handled by FormUtils)
-     */
-    togglePasswordVisibility() {
-        this.state.showPassword = !this.state.showPassword;
-        // FormUtils handles the actual DOM updates
-    }
-
-    /**
-     * Process login
-     * @param {FormData} formData - Data of the form
+     * Process login form submission
+     * @param {FormData} formData - Form data
      */
     async processLogin(formData) {
         if (this.state.isLoading) return;
@@ -186,7 +183,7 @@ export class LoginScreen {
         this.updateSubmitButton();
 
         try {
-            // Simulate authentication delay
+            // Simulate network delay
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             const credentials = {
@@ -196,14 +193,13 @@ export class LoginScreen {
                 senha: formData.get('senha')
             };
 
-            // Authenticate using UserManager (check localStorage + default user)
+            // Authenticate user
             const user = userManager.authenticateUser(credentials);
 
             if (user) {
-                // Save data if "remember login" is checked
+                // Save credentials if remember me is checked
                 if (this.state.rememberMe) {
-                    localStorage.setItem('swift_remember_cpf', credentials.cpf);
-                    localStorage.setItem('swift_remember_codigo_loja', credentials.codigoLoja);
+                    localStorage.setItem(this.REMEMBER_USER_KEY, JSON.stringify(credentials));
                 }
 
                 this.router.setCurrentUser(user);
@@ -215,7 +211,7 @@ export class LoginScreen {
 
                 Toast.success(welcomeMessage);
 
-                // Wait a little to show the toast before navigating
+                // Navigate to dashboard after showing toast
                 setTimeout(() => {
                     this.router.navigate('dashboard');
                 }, 1500);
@@ -231,7 +227,7 @@ export class LoginScreen {
     }
 
     /**
-     * Update submit button using FormUtils
+     * Update submit button loading state
      */
     updateSubmitButton() {
         const button = document.querySelector('.btn-auth');
@@ -239,12 +235,9 @@ export class LoginScreen {
     }
 
     /**
-     * Setup events of the screen
+     * Setup event listeners for the login screen
      */
     setupEvents() {
-        // Expose instance globally for demo buttons
-        window.loginScreen = this;
-
         const form = document.getElementById('loginForm');
         if (form) {
             form.addEventListener('submit', e => {
@@ -254,13 +247,13 @@ export class LoginScreen {
             });
         }
 
-        // Setup form inputs using FormUtils
+        // Setup form input handlers
         FormUtils.setupFormInputs(this, this.updateField);
 
-        // Setup password toggle using FormUtils
+        // Setup password visibility toggle
         FormUtils.setupPasswordToggle(this.state, 'senha', 'showPassword');
 
-        // Event listener for checkbox
+        // Setup remember me checkbox
         const rememberCheckbox = document.getElementById('rememberMe');
         if (rememberCheckbox) {
             rememberCheckbox.addEventListener('change', e => {
@@ -268,25 +261,23 @@ export class LoginScreen {
             });
         }
 
-        // Setup viewport listeners using CommonUtils
+        // Setup viewport listeners for responsive behavior
         CommonUtils.setupViewportListeners();
 
-        // Load saved data if exist
-        this.loadSavedCredentials();
+        // Load saved credentials if available
+        // this.loadSavedCredentials();
     }
 
-    // Removed duplicate utility functions - now using CommonUtils
-
     /**
-     * Load saved credentials
+     * Load saved credentials from localStorage
      */
     loadSavedCredentials() {
-        const savedCPF = localStorage.getItem('swift_remember_cpf');
-        const savedCodigoLoja = localStorage.getItem('swift_remember_codigo_loja');
+        const savedUser = JSON.parse(localStorage.getItem('swift_remember_user'));
 
-        if (savedCPF && savedCodigoLoja) {
-            document.getElementById('cpf').value = savedCPF;
-            document.getElementById('codigoLoja').value = savedCodigoLoja;
+        if (savedUser) {
+            document.getElementById('cpf').value = savedUser.cpf;
+            document.getElementById('codigoLoja').value = savedUser.codigoLoja;
+            document.getElementById('codigoFuncionario').value = savedUser.codigoFuncionario;
             document.getElementById('rememberMe').checked = true;
 
             this.state.formData.cpf = savedCPF;

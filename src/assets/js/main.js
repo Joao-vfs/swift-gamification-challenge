@@ -5,16 +5,24 @@ import { RegisterScreen } from './screens/RegisterScreen.js';
 import { DashboardScreen } from './screens/DashboardScreen.js';
 import { Toast } from './utils/Toast.js';
 
+/**
+ * SwiftGamificationApp - Main application controller
+ * Manages screen initialization, routing, and global state
+ */
 class SwiftGamificationApp {
     constructor() {
         this.router = new Router();
         this.screens = {};
         this.currentScreen = null;
 
+        // Expose router and Toast globally for easy access
         window.router = this.router;
         window.Toast = Toast;
     }
 
+    /**
+     * Initialize the application
+     */
     async init() {
         this.initializeScreens();
         this.setupEventListeners();
@@ -22,6 +30,9 @@ class SwiftGamificationApp {
         this.hideLoading();
     }
 
+    /**
+     * Initialize all application screens
+     */
     initializeScreens() {
         this.screens = {
             home: new HomeScreen(this.router),
@@ -31,11 +42,16 @@ class SwiftGamificationApp {
         };
     }
 
+    /**
+     * Setup global event listeners
+     */
     setupEventListeners() {
+        // Listen for route changes
         document.addEventListener('routeChange', event => {
             this.handleRouteChange(event.detail);
         });
 
+        // Handle logo clicks to return to home
         document.addEventListener('click', e => {
             if (e.target.classList.contains('auth-logo') || e.target.classList.contains('dashboard-logo')) {
                 this.router.navigate('home');
@@ -44,15 +60,15 @@ class SwiftGamificationApp {
     }
 
     /**
-     * Handle route changes
-     * @param {Object} detail - Route details
+     * Handle route change events
+     * @param {Object} detail - Route change details (page, user)
      */
     handleRouteChange(detail) {
         const { page } = detail;
         const screen = this.screens[page];
 
         if (!screen) {
-            console.warn(`Screen "${page}" not found. Redirecting to home.`);
+            Toast.warning(`Tela "${page}" não encontrada. Redirecionando para a home.`);
             this.router.navigate('home');
             return;
         }
@@ -61,36 +77,36 @@ class SwiftGamificationApp {
     }
 
     /**
-     * Render current screen
-     * @param {Object} screen - Screen to be rendered
-     * @param {string} pageName - Name of the page
+     * Render a screen
+     * @param {Object} screen - Screen instance to render
+     * @param {string} pageName - Name of the page being rendered
      */
     renderScreen(screen, pageName) {
         const content = document.getElementById('content');
         if (!content) {
-            Toast.error('Element #content not found');
+            Toast.error('Content container not found');
             return;
         }
 
         try {
             content.innerHTML = screen.render();
 
+            // Setup screen-specific events if available
             if (screen.setupEvents) {
                 screen.setupEvents();
             }
 
             this.currentScreen = screen;
-
             this.updatePageTitle(pageName);
         } catch (error) {
-            Toast.error(`Error rendering screen "${pageName}":`, error);
+            Toast.error(`Erro ao renderizar a tela "${pageName}"`);
             content.innerHTML = this.getErrorScreen();
         }
     }
 
     /**
-     * Update page title
-     * @param {string} pageName - Page name
+     * Update browser page title
+     * @param {string} pageName - Name of the current page
      */
     updatePageTitle(pageName) {
         const titles = {
@@ -104,8 +120,8 @@ class SwiftGamificationApp {
     }
 
     /**
-     * Get error screen
-     * @returns {string} HTML of the error screen
+     * Get error screen HTML
+     * @returns {string} HTML for error screen
      */
     getErrorScreen() {
         return `
@@ -120,7 +136,7 @@ class SwiftGamificationApp {
     }
 
     /**
-     * Hide loading screen
+     * Hide loading screen and show content
      */
     hideLoading() {
         setTimeout(() => {
@@ -138,9 +154,11 @@ class SwiftGamificationApp {
     }
 }
 
+// Initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     const app = new SwiftGamificationApp();
     app.init();
 
+    // Expose app instance globally for debugging
     window.swiftApp = app;
 });

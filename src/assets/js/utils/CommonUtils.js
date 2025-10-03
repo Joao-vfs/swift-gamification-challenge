@@ -25,6 +25,29 @@ export class CommonUtils {
     }
 
     /**
+     * Mask CPF showing only first 3 and last 2 digits
+     * Example: 123.456.789-01 becomes 123.***.***-01
+     * @param {string} cpf - CPF string to mask
+     * @returns {string} Masked CPF
+     */
+    static maskCPF(cpf) {
+        if (!cpf) return '';
+        
+        // Remove all non-numeric characters
+        const cleaned = cpf.replace(/\D/g, '');
+        
+        // Need at least 5 digits to show first 3 and last 2
+        if (cleaned.length < 5) return cpf;
+        
+        // Get first 3 and last 2 digits
+        const firstThree = cleaned.substring(0, 3);
+        const lastTwo = cleaned.substring(cleaned.length - 2);
+        
+        // Format: 123.***.***-01
+        return `${firstThree}.***.***-${lastTwo}`;
+    }
+
+    /**
      * Format number with thousands separator (Brazilian format)
      * @param {number} number - Number to format
      * @returns {string} Formatted number
